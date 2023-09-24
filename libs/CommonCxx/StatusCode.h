@@ -1,10 +1,18 @@
 #pragma once
 
-enum class AccountHandlerStatusCode : int 
+#include <string>
+
+namespace Common
 {
-    AccountSuccessfullyCreated = 0,
-    AccountSuccessfullyDeleted,
-    AccountAlreadyExists,
-    FailedToCreateAccount,
-    FailedToDeleteAccount
-};
+    enum class AccountHandlerStatusCode : int 
+    {
+        AccountSuccessfullyCreated = 0,
+        AccountSuccessfullyDeleted,
+        AccountAlreadyExists,
+        AccountCouldntBeFound,
+        FailedToCreateAccount,
+        FailedToDeleteAccount
+    };
+
+    std::string AccountHandlerStatusCodeToString(const AccountHandlerStatusCode& statusCode);
+}

@@ -17,9 +17,12 @@ set(TASKMGRSYSTEM_SRC  TaskMgrSystem.cpp
 
                        services/AccountService/AccountService.cpp
                        services/AccountService/AccountHandler/AccountHandler.cpp
+                       services/AccountService/AccountMonitor/AccountMonitor.cpp
                        
                        libs/Utils/ErrorHandling/ErrorHandling.cpp
-                       libs/Utils/CryptoHandler/CryptoHandler.cpp)
+                       libs/Utils/CryptoHandler/CryptoHandler.cpp
+                       
+                       libs/CommonCxx/StatusCode.cpp)
 
 add_executable(TaskMgrSystem ${TASKMGRSYSTEM_MAIN} ${TASKMGRSYSTEM_SRC})
 target_include_directories(TaskMgrSystem PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}

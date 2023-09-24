@@ -9,23 +9,22 @@
 #include "AccountHandler.h"
 #include "CryptoHandler/CryptoHandler.h"
 #include "ErrorHandling/ErrorHandling.h"
-
+#include "CommonCxx/FileSystemRAII.h"
 
 AccountHandler::AccountHandler()
 {}
 
-AccountHandlerStatusCode AccountHandler::CreateAccount(std::string username, std::string password)
+Common::AccountHandlerStatusCode AccountHandler::CreateAccount(std::string username, std::string password)
 {
     try
     {
         auto rootPath = std::filesystem::current_path();
-        auto accountsPath = rootPath.parent_path() / "objects/accounts";
-        auto accountFilename = username + "_account.json";
+        auto accountFilename = username + accountFileSuffix;
 
-        std::filesystem::current_path(accountsPath);
+        Common::FileSystemRAII fileSystem(accountPath);
 
-        for(const auto& filePath : std::filesystem::recursive_directory_iterator(std::filesystem::current_path()))
-            if(filePath.path().filename().string() == accountFilename) return AccountHandlerStatusCode::AccountAlreadyExists;
+        for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
+            if(filePath.path().filename().string() == accountFilename) return Common::AccountHandlerStatusCode::AccountAlreadyExists;
 
         std::ofstream accountFile;
         accountFile.exceptions(std::ios::badbit | std::ios::failbit);
@@ -39,29 +38,35 @@ AccountHandlerStatusCode AccountHandler::CreateAccount(std::string username, std
 
         accountFile << accountJson.dump(4) << std::endl;
         accountFile.close();
-
-        std::filesystem::current_path(rootPath);
     }
     catch(const std::ifstream::failure& e)
     {
-        throw(ErrorHandling("AccountHandler failed to create a new account", static_cast<int>(AccountHandlerStatusCode::FailedToCreateAccount)));
+        throw(ErrorHandling("Failed to create a new account", static_cast<int>(Common::AccountHandlerStatusCode::FailedToCreateAccount)));
     }
 
-    return AccountHandlerStatusCode::AccountSuccessfullyCreated;
+    return Common::AccountHandlerStatusCode::AccountSuccessfullyCreated;
 }
 
-AccountHandlerStatusCode AccountHandler::DeleteAccount(std::string username)
+Common::AccountHandlerStatusCode AccountHandler::DeleteAccount(std::string username)
 {
-    auto rootPath = std::filesystem::current_path();
-    auto accountsPath = rootPath.parent_path() / "objects/accounts";
-    auto accountFilename = username + "_account.json";
+    try
+    {
+        auto rootPath = std::filesystem::current_path();
+        auto accountFilename = username + accountFileSuffix;
 
-    std::filesystem::current_path(accountsPath);
+        Common::FileSystemRAII fileSystem(accountPath);
 
-    for(const auto& filePath : std::filesystem::recursive_directory_iterator(std::filesystem::current_path()))
-        if(filePath.path().filename().string() == accountFilename)
-        {
-            std::filesystem::remove(filePath.path());
-            return AccountHandlerStatusCode::AccountSuccessfullyDeleted;
-        }
+        for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
+            if(filePath.path().filename().string() == accountFilename)
+            {
+                std::filesystem::remove(filePath.path());
+                return Common::AccountHandlerStatusCode::AccountSuccessfullyDeleted;
+            }
+        
+    }
+    catch(const std::filesystem::filesystem_error& e)
+    {
+        throw ErrorHandling("Couldn't delete the account", static_cast<int>(Common::AccountHandlerStatusCode::FailedToDeleteAccount));
+    }
+    return Common::AccountHandlerStatusCode::AccountCouldntBeFound;
 }
