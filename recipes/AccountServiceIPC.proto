@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package AccountServiceIPC;
+
+service AccountServiceIPC {
+    rpc Ping(Empty) returns(Empty) {}
+    rpc CreateAccount(CreateAccountRequest) returns(CreateAccountResponse) {}
+    rpc DeleteAccount(DeleteAccountRequest) returns(DeleteAccountResponse) {}
+}
+
+message Empty {}
+
+message CreateAccountRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message CreateAccountResponse {}
+
+message DeleteAccountRequest {
+    string username = 1;
+}
+
+message DeleteAccountResponse {}

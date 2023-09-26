@@ -20,7 +20,7 @@ Common::AccountHandlerStatusCode AccountHandler::CreateAccount(std::string usern
     {
         auto rootPath = std::filesystem::current_path();
         auto accountFilename = username + accountFileSuffix;
-
+        std::cout << rootPath.parent_path().string() << std::endl;
         Common::FileSystemRAII fileSystem(accountPath);
 
         for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
@@ -35,7 +35,6 @@ Common::AccountHandlerStatusCode AccountHandler::CreateAccount(std::string usern
         accountJson["Id"] = accountId;
         accountJson["Username"] = username;
         accountJson["Password"] = CryptoHandler::GenerateSHA256(password);
-
         accountFile << accountJson.dump(4) << std::endl;
         accountFile.close();
     }
@@ -55,7 +54,6 @@ Common::AccountHandlerStatusCode AccountHandler::DeleteAccount(std::string usern
         auto accountFilename = username + accountFileSuffix;
 
         Common::FileSystemRAII fileSystem(accountPath);
-
         for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
             if(filePath.path().filename().string() == accountFilename)
             {

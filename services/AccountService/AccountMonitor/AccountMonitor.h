@@ -4,10 +4,28 @@
 #include <future>
 #include <functional>
 #include <vector>
+#include <map>
+
+#include "grpcpp/grpcpp.h"
+#include "grpcpp/ext/proto_server_reflection_plugin.h"
+#include "grpcpp/health_check_service_interface.h"
 
 #include "AccountHandler/AccountHandler.h"
-#include "CommonCxx/FoldCallable.h"
+#include "AccountServiceIPC/AccountServiceIPC.grpc.pb.h"
+#include "CommonCxx/Consts.h"
 
+class AccountServiceIPCImpl final : public AccountServiceIPC::AccountServiceIPC::Service 
+{
+public:
+    AccountServiceIPCImpl(AccountHandlerPtr accountHandler);
+    grpc::Status CreateAccount(grpc::ServerContext* context, const AccountServiceIPC::CreateAccountRequest* request, AccountServiceIPC::CreateAccountResponse* response);
+    grpc::Status DeleteAccount(grpc::ServerContext* context, const AccountServiceIPC::DeleteAccountRequest* request, AccountServiceIPC::DeleteAccountResponse* response);
+
+private:
+    AccountHandlerPtr m_accountHandler;
+
+};
+using AccountServiceIPCImplPtr = std::shared_ptr<AccountServiceIPCImpl>;
 
 class AccountMonitor 
 {
@@ -16,14 +34,10 @@ public:
     ~AccountMonitor();
 
 private:
-    void AccountWatcher();
-
     AccountHandlerPtr m_accountHandler;
-    bool m_isRunning;
-    std::unique_ptr<std::future<void>> m_watcherThread;
-
-    std::vector<VirtualFoldCallablePtr> m_callables;
-protected:
-    void InitializeCallables();
+    std::shared_ptr<grpc::Service> m_accountServiceIPC;
+    std::unique_ptr<grpc::Server> m_grpcServer{nullptr};
 };
 using AccountMonitorPtr = std::shared_ptr<AccountMonitor>;
+
+
