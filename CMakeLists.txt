@@ -16,6 +16,8 @@ find_package(OpenSSL REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
 find_package(re2 REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
 find_package(protobuf REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
 find_package(gRPC REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
+find_package(SQLite3 REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
+find_package(SqliteOrm REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
 
 
 
@@ -35,6 +37,6 @@ target_include_directories(TaskMgrSystem PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_directories(TaskMgrSystem PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libs/ConanLibs)
-target_link_libraries(TaskMgrSystem nlohmann_json::nlohmann_json stduuid::stduuid cryptopp::cryptopp fmt::fmt uuid protobuf::protobuf gRPC::grpc gRPC::grpc++ gRPC::grpc++_reflection)
+target_link_libraries(TaskMgrSystem nlohmann_json::nlohmann_json stduuid::stduuid cryptopp::cryptopp fmt::fmt uuid protobuf::protobuf gRPC::grpc gRPC::grpc++ gRPC::grpc++_reflection sqlite_orm::sqlite_orm)
 add_subdirectory(services/AccountService)
 add_subdirectory(services/IpcClient)

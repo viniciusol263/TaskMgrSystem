@@ -7,6 +7,8 @@ add_executable(IpcClient main.cpp ${IPCCLIENT_SRC}
                                 
                                   ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.pb.cc
                                   ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.grpc.pb.cc
+
+                                  ${TASKMGRSYSTEMSOURCEPATH}/libs/IPCClients/AccountServiceClient/AccountServiceClient.cpp
 )
 
 target_include_directories(IpcClient PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
@@ -16,6 +18,7 @@ target_include_directories(IpcClient PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
                                                 ${TASKMGRSYSTEMSOURCEPATH}/services
                                                 ${TASKMGRSYSTEMSOURCEPATH}/libs
                                                 ${TASKMGRSYSTEMSOURCEPATH}/libs/Utils
+                                                ${TASKMGRSYSTEMSOURCEPATH}/libs/IPCClients
                                                 ${TASKMGRSYSTEMSOURCEPATH}/recipes
                                                 ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountService
 )

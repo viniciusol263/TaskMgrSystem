@@ -15,4 +15,18 @@ namespace Common
     };
 
     std::string AccountHandlerStatusCodeToString(const AccountHandlerStatusCode& statusCode);
+
+    enum class AccountAuthenticationStatusCode : int
+    {
+        AuthenticatedAccount = 0,
+        ErrorAuthenticationAccount
+    };
+
+    enum class FSFailures : int
+    {
+        ErrorOpening = 0,
+        ErrorWriting,
+        ErrorReading,
+        ErrorClosing
+    };
 }

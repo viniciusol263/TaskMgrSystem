@@ -25,6 +25,7 @@ static const char* AccountServiceIPC_method_names[] = {
   "/AccountServiceIPC.AccountServiceIPC/Ping",
   "/AccountServiceIPC.AccountServiceIPC/CreateAccount",
   "/AccountServiceIPC.AccountServiceIPC/DeleteAccount",
+  "/AccountServiceIPC.AccountServiceIPC/AuthenticateAccount",
 };
 
 std::unique_ptr< AccountServiceIPC::Stub> AccountServiceIPC::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ AccountServiceIPC::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   : channel_(channel), rpcmethod_Ping_(AccountServiceIPC_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CreateAccount_(AccountServiceIPC_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteAccount_(AccountServiceIPC_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AuthenticateAccount_(AccountServiceIPC_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AccountServiceIPC::Stub::Ping(::grpc::ClientContext* context, const ::AccountServiceIPC::Empty& request, ::AccountServiceIPC::Empty* response) {
@@ -108,6 +110,29 @@ void AccountServiceIPC::Stub::async::DeleteAccount(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::Status AccountServiceIPC::Stub::AuthenticateAccount(::grpc::ClientContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest& request, ::AccountServiceIPC::AuthenticateAccountResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::AccountServiceIPC::AuthenticateAccountRequest, ::AccountServiceIPC::AuthenticateAccountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AuthenticateAccount_, context, request, response);
+}
+
+void AccountServiceIPC::Stub::async::AuthenticateAccount(::grpc::ClientContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest* request, ::AccountServiceIPC::AuthenticateAccountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::AccountServiceIPC::AuthenticateAccountRequest, ::AccountServiceIPC::AuthenticateAccountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AuthenticateAccount_, context, request, response, std::move(f));
+}
+
+void AccountServiceIPC::Stub::async::AuthenticateAccount(::grpc::ClientContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest* request, ::AccountServiceIPC::AuthenticateAccountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AuthenticateAccount_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::AccountServiceIPC::AuthenticateAccountResponse>* AccountServiceIPC::Stub::PrepareAsyncAuthenticateAccountRaw(::grpc::ClientContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::AccountServiceIPC::AuthenticateAccountResponse, ::AccountServiceIPC::AuthenticateAccountRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AuthenticateAccount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::AccountServiceIPC::AuthenticateAccountResponse>* AccountServiceIPC::Stub::AsyncAuthenticateAccountRaw(::grpc::ClientContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAuthenticateAccountRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AccountServiceIPC::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AccountServiceIPC_method_names[0],
@@ -139,6 +164,16 @@ AccountServiceIPC::Service::Service() {
              ::AccountServiceIPC::DeleteAccountResponse* resp) {
                return service->DeleteAccount(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AccountServiceIPC_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AccountServiceIPC::Service, ::AccountServiceIPC::AuthenticateAccountRequest, ::AccountServiceIPC::AuthenticateAccountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AccountServiceIPC::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::AccountServiceIPC::AuthenticateAccountRequest* req,
+             ::AccountServiceIPC::AuthenticateAccountResponse* resp) {
+               return service->AuthenticateAccount(ctx, req, resp);
+             }, this)));
 }
 
 AccountServiceIPC::Service::~Service() {
@@ -159,6 +194,13 @@ AccountServiceIPC::Service::~Service() {
 }
 
 ::grpc::Status AccountServiceIPC::Service::DeleteAccount(::grpc::ServerContext* context, const ::AccountServiceIPC::DeleteAccountRequest* request, ::AccountServiceIPC::DeleteAccountResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AccountServiceIPC::Service::AuthenticateAccount(::grpc::ServerContext* context, const ::AccountServiceIPC::AuthenticateAccountRequest* request, ::AccountServiceIPC::AuthenticateAccountResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -5,42 +5,41 @@
 #define UUID_SYSTEM_GENERATOR
 #include "uuid.h"
 #include "nlohmann/json.hpp"
+#include "fmt/format.h"
 
 #include "AccountHandler.h"
 #include "CryptoHandler/CryptoHandler.h"
 #include "ErrorHandling/ErrorHandling.h"
 #include "CommonCxx/FileSystemRAII.h"
 
-AccountHandler::AccountHandler()
+
+AccountHandler::AccountHandler(const Common::AccountStorage& storage) :
+    m_storage(storage)
 {}
 
 Common::AccountHandlerStatusCode AccountHandler::CreateAccount(std::string username, std::string password)
 {
     try
-    {
-        auto rootPath = std::filesystem::current_path();
-        auto accountFilename = username + accountFileSuffix;
-        std::cout << rootPath.parent_path().string() << std::endl;
-        Common::FileSystemRAII fileSystem(accountPath);
-
-        for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
-            if(filePath.path().filename().string() == accountFilename) return Common::AccountHandlerStatusCode::AccountAlreadyExists;
-
-        std::ofstream accountFile;
-        accountFile.exceptions(std::ios::badbit | std::ios::failbit);
-        accountFile.open(accountFilename, std::ios::out | std::ios::trunc);
-        
+    {   
+        auto returnedId = m_storage.get_all<Common::Account>(sqlite_orm::where(sqlite_orm::c(&Common::Account::username) = username));
+        if(returnedId.size() > 0)
+        {
+            std::cout << m_storage.dump(returnedId[0]) << std::endl;
+            return Common::AccountHandlerStatusCode::AccountAlreadyExists;
+        }
         auto accountId = uuids::to_string(uuids::uuid_system_generator{}());
-        nlohmann::json accountJson;
-        accountJson["Id"] = accountId;
-        accountJson["Username"] = username;
-        accountJson["Password"] = CryptoHandler::GenerateSHA256(password);
-        accountFile << accountJson.dump(4) << std::endl;
-        accountFile.close();
+        Common::Account account {
+            .id = 0,
+            .accountId = accountId,
+            .username = username,
+            .password = CryptoHandler::GenerateSHA256(password),
+            .typeId = 1
+        };
+        m_storage.insert(account);   
     }
     catch(const std::ifstream::failure& e)
     {
-        throw(ErrorHandling("Failed to create a new account", static_cast<int>(Common::AccountHandlerStatusCode::FailedToCreateAccount)));
+        throw(ErrorHandling(std::string("Failed to create a new account: ") + std::string(e.what()), static_cast<int>(Common::AccountHandlerStatusCode::FailedToCreateAccount)));
     }
 
     return Common::AccountHandlerStatusCode::AccountSuccessfullyCreated;
@@ -50,21 +49,16 @@ Common::AccountHandlerStatusCode AccountHandler::DeleteAccount(std::string usern
 {
     try
     {
-        auto rootPath = std::filesystem::current_path();
-        auto accountFilename = username + accountFileSuffix;
-
-        Common::FileSystemRAII fileSystem(accountPath);
-        for(const auto& filePath : std::filesystem::recursive_directory_iterator(fileSystem.GetCurrentPath()))
-            if(filePath.path().filename().string() == accountFilename)
-            {
-                std::filesystem::remove(filePath.path());
-                return Common::AccountHandlerStatusCode::AccountSuccessfullyDeleted;
-            }
-        
+        auto returnedId = m_storage.get_all<Common::Account>(sqlite_orm::where(sqlite_orm::c(&Common::Account::username) = username));
+        if(returnedId.size() > 0)
+        {
+            m_storage.remove<Common::Account>(returnedId[0].id);
+            return Common::AccountHandlerStatusCode::AccountAlreadyExists;
+        }
     }
     catch(const std::filesystem::filesystem_error& e)
     {
-        throw ErrorHandling("Couldn't delete the account", static_cast<int>(Common::AccountHandlerStatusCode::FailedToDeleteAccount));
+        throw ErrorHandling(std::string("Couldn't delete the account: ") + std::string(e.what()), static_cast<int>(Common::AccountHandlerStatusCode::FailedToDeleteAccount));
     }
     return Common::AccountHandlerStatusCode::AccountCouldntBeFound;
 }

@@ -4,6 +4,7 @@ project(AccountService)
 set(ACCOUNTSERVICE_SRC AccountService.cpp
                        AccountHandler/AccountHandler.cpp
                        AccountMonitor/AccountMonitor.cpp
+                       AccountAuthentication/AccountAuthentication.cpp
                        
                        ${TASKMGRSYSTEMSOURCEPATH}/libs/Utils/ErrorHandling/ErrorHandling.cpp
                        ${TASKMGRSYSTEMSOURCEPATH}/libs/Utils/CryptoHandler/CryptoHandler.cpp
@@ -17,6 +18,7 @@ add_executable(AccountService main.cpp ${ACCOUNTSERVICE_SRC})
 target_include_directories(AccountService PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
                                                 ${CMAKE_CURRENT_SOURCE_DIR}/AccountHandler
                                                 ${CMAKE_CURRENT_SOURCE_DIR}/AccountMonitor
+                                                ${CMAKE_CURRENT_SOURCE_DIR}/AccountAuthentication
 
                                                 ${TASKMGRSYSTEMSOURCEPATH}/services
                                                 ${TASKMGRSYSTEMSOURCEPATH}/libs
@@ -24,4 +26,4 @@ target_include_directories(AccountService PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
                                                 ${TASKMGRSYSTEMSOURCEPATH}/recipes
                                                 ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountService
 )
-target_link_libraries(AccountService nlohmann_json::nlohmann_json stduuid::stduuid cryptopp::cryptopp fmt::fmt uuid protobuf::protobuf gRPC::grpc gRPC::grpc++ gRPC::grpc++_reflection gRPC::grpc++_unsecure)
+target_link_libraries(AccountService nlohmann_json::nlohmann_json stduuid::stduuid cryptopp::cryptopp fmt::fmt uuid protobuf::protobuf gRPC::grpc gRPC::grpc++ gRPC::grpc++_reflection gRPC::grpc++_unsecure sqlite_orm::sqlite_orm)

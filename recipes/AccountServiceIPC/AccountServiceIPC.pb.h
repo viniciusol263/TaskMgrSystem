@@ -46,6 +46,12 @@ struct TableStruct_AccountServiceIPC_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_AccountServiceIPC_2eproto;
 namespace AccountServiceIPC {
+class AuthenticateAccountRequest;
+struct AuthenticateAccountRequestDefaultTypeInternal;
+extern AuthenticateAccountRequestDefaultTypeInternal _AuthenticateAccountRequest_default_instance_;
+class AuthenticateAccountResponse;
+struct AuthenticateAccountResponseDefaultTypeInternal;
+extern AuthenticateAccountResponseDefaultTypeInternal _AuthenticateAccountResponse_default_instance_;
 class CreateAccountRequest;
 struct CreateAccountRequestDefaultTypeInternal;
 extern CreateAccountRequestDefaultTypeInternal _CreateAccountRequest_default_instance_;
@@ -63,6 +69,8 @@ struct EmptyDefaultTypeInternal;
 extern EmptyDefaultTypeInternal _Empty_default_instance_;
 }  // namespace AccountServiceIPC
 PROTOBUF_NAMESPACE_OPEN
+template<> ::AccountServiceIPC::AuthenticateAccountRequest* Arena::CreateMaybeMessage<::AccountServiceIPC::AuthenticateAccountRequest>(Arena*);
+template<> ::AccountServiceIPC::AuthenticateAccountResponse* Arena::CreateMaybeMessage<::AccountServiceIPC::AuthenticateAccountResponse>(Arena*);
 template<> ::AccountServiceIPC::CreateAccountRequest* Arena::CreateMaybeMessage<::AccountServiceIPC::CreateAccountRequest>(Arena*);
 template<> ::AccountServiceIPC::CreateAccountResponse* Arena::CreateMaybeMessage<::AccountServiceIPC::CreateAccountResponse>(Arena*);
 template<> ::AccountServiceIPC::DeleteAccountRequest* Arena::CreateMaybeMessage<::AccountServiceIPC::DeleteAccountRequest>(Arena*);
@@ -747,6 +755,293 @@ class DeleteAccountResponse final :
   };
   friend struct ::TableStruct_AccountServiceIPC_2eproto;
 };
+// -------------------------------------------------------------------
+
+class AuthenticateAccountRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AccountServiceIPC.AuthenticateAccountRequest) */ {
+ public:
+  inline AuthenticateAccountRequest() : AuthenticateAccountRequest(nullptr) {}
+  ~AuthenticateAccountRequest() override;
+  explicit PROTOBUF_CONSTEXPR AuthenticateAccountRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AuthenticateAccountRequest(const AuthenticateAccountRequest& from);
+  AuthenticateAccountRequest(AuthenticateAccountRequest&& from) noexcept
+    : AuthenticateAccountRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthenticateAccountRequest& operator=(const AuthenticateAccountRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthenticateAccountRequest& operator=(AuthenticateAccountRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AuthenticateAccountRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AuthenticateAccountRequest* internal_default_instance() {
+    return reinterpret_cast<const AuthenticateAccountRequest*>(
+               &_AuthenticateAccountRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(AuthenticateAccountRequest& a, AuthenticateAccountRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthenticateAccountRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthenticateAccountRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AuthenticateAccountRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AuthenticateAccountRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AuthenticateAccountRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AuthenticateAccountRequest& from) {
+    AuthenticateAccountRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthenticateAccountRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AccountServiceIPC.AuthenticateAccountRequest";
+  }
+  protected:
+  explicit AuthenticateAccountRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsernameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string username = 1;
+  void clear_username();
+  const std::string& username() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_username(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_username();
+  PROTOBUF_NODISCARD std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string password = 2;
+  void clear_password();
+  const std::string& password() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_password(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // @@protoc_insertion_point(class_scope:AccountServiceIPC.AuthenticateAccountRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_AccountServiceIPC_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AuthenticateAccountResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:AccountServiceIPC.AuthenticateAccountResponse) */ {
+ public:
+  inline AuthenticateAccountResponse() : AuthenticateAccountResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR AuthenticateAccountResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AuthenticateAccountResponse(const AuthenticateAccountResponse& from);
+  AuthenticateAccountResponse(AuthenticateAccountResponse&& from) noexcept
+    : AuthenticateAccountResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthenticateAccountResponse& operator=(const AuthenticateAccountResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthenticateAccountResponse& operator=(AuthenticateAccountResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AuthenticateAccountResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AuthenticateAccountResponse* internal_default_instance() {
+    return reinterpret_cast<const AuthenticateAccountResponse*>(
+               &_AuthenticateAccountResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(AuthenticateAccountResponse& a, AuthenticateAccountResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthenticateAccountResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthenticateAccountResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AuthenticateAccountResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AuthenticateAccountResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const AuthenticateAccountResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const AuthenticateAccountResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AccountServiceIPC.AuthenticateAccountResponse";
+  }
+  protected:
+  explicit AuthenticateAccountResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:AccountServiceIPC.AuthenticateAccountResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_AccountServiceIPC_2eproto;
+};
 // ===================================================================
 
 
@@ -924,9 +1219,121 @@ inline void DeleteAccountRequest::set_allocated_username(std::string* username) 
 
 // DeleteAccountResponse
 
+// -------------------------------------------------------------------
+
+// AuthenticateAccountRequest
+
+// string username = 1;
+inline void AuthenticateAccountRequest::clear_username() {
+  _impl_.username_.ClearToEmpty();
+}
+inline const std::string& AuthenticateAccountRequest::username() const {
+  // @@protoc_insertion_point(field_get:AccountServiceIPC.AuthenticateAccountRequest.username)
+  return _internal_username();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthenticateAccountRequest::set_username(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.username_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AccountServiceIPC.AuthenticateAccountRequest.username)
+}
+inline std::string* AuthenticateAccountRequest::mutable_username() {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:AccountServiceIPC.AuthenticateAccountRequest.username)
+  return _s;
+}
+inline const std::string& AuthenticateAccountRequest::_internal_username() const {
+  return _impl_.username_.Get();
+}
+inline void AuthenticateAccountRequest::_internal_set_username(const std::string& value) {
+  
+  _impl_.username_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthenticateAccountRequest::_internal_mutable_username() {
+  
+  return _impl_.username_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthenticateAccountRequest::release_username() {
+  // @@protoc_insertion_point(field_release:AccountServiceIPC.AuthenticateAccountRequest.username)
+  return _impl_.username_.Release();
+}
+inline void AuthenticateAccountRequest::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.username_.SetAllocated(username, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.username_.IsDefault()) {
+    _impl_.username_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:AccountServiceIPC.AuthenticateAccountRequest.username)
+}
+
+// string password = 2;
+inline void AuthenticateAccountRequest::clear_password() {
+  _impl_.password_.ClearToEmpty();
+}
+inline const std::string& AuthenticateAccountRequest::password() const {
+  // @@protoc_insertion_point(field_get:AccountServiceIPC.AuthenticateAccountRequest.password)
+  return _internal_password();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AuthenticateAccountRequest::set_password(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.password_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AccountServiceIPC.AuthenticateAccountRequest.password)
+}
+inline std::string* AuthenticateAccountRequest::mutable_password() {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:AccountServiceIPC.AuthenticateAccountRequest.password)
+  return _s;
+}
+inline const std::string& AuthenticateAccountRequest::_internal_password() const {
+  return _impl_.password_.Get();
+}
+inline void AuthenticateAccountRequest::_internal_set_password(const std::string& value) {
+  
+  _impl_.password_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AuthenticateAccountRequest::_internal_mutable_password() {
+  
+  return _impl_.password_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AuthenticateAccountRequest::release_password() {
+  // @@protoc_insertion_point(field_release:AccountServiceIPC.AuthenticateAccountRequest.password)
+  return _impl_.password_.Release();
+}
+inline void AuthenticateAccountRequest::set_allocated_password(std::string* password) {
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.password_.SetAllocated(password, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:AccountServiceIPC.AuthenticateAccountRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// AuthenticateAccountResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
