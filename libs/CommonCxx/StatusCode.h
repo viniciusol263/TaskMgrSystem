@@ -11,7 +11,8 @@ namespace Common
         AccountAlreadyExists,
         AccountCouldntBeFound,
         FailedToCreateAccount,
-        FailedToDeleteAccount
+        FailedToDeleteAccount,
+        NotAuthenticatedAccount
     };
 
     std::string AccountHandlerStatusCodeToString(const AccountHandlerStatusCode& statusCode);
@@ -22,11 +23,18 @@ namespace Common
         ErrorAuthenticationAccount
     };
 
+    std::string AccountAuthenticationStatusCodeToString(const AccountAuthenticationStatusCode& statusCode);
+    
     enum class FSFailures : int
     {
         ErrorOpening = 0,
         ErrorWriting,
         ErrorReading,
         ErrorClosing
+    };
+
+    enum class gRPCFailures : int
+    {
+        ErrorOnClientCall = 0
     };
 }

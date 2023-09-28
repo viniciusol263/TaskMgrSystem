@@ -12,6 +12,17 @@ namespace Common
             case AccountHandlerStatusCode::AccountCouldntBeFound: return "AccountCouldntBeFound";
             case AccountHandlerStatusCode::FailedToCreateAccount: return "FailedToCreateAccount";
             case AccountHandlerStatusCode::FailedToDeleteAccount: return "FailedToDeleteAccount";
+            case AccountHandlerStatusCode::NotAuthenticatedAccount: return "NotAuthenticatedAccount";
+        }
+        return "Unknown";
+    }
+
+    std::string AccountAuthenticationStatusCodeToString(const AccountAuthenticationStatusCode& statusCode)
+    {
+        switch(statusCode)
+        {
+            case AccountAuthenticationStatusCode::AuthenticatedAccount: return "AuthenticatedAccount";
+            case AccountAuthenticationStatusCode::ErrorAuthenticationAccount: return "ErrorAuthenticationAccount";
         }
         return "Unknown";
     }

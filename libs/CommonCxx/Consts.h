@@ -2,7 +2,13 @@
 
 #include <filesystem>
 #include <string>
+#include <chrono>
 
-constexpr const char* accountHandlerIpcPath = "unix:///home/vinicius/accountHandlerIpc.sock";
-const std::filesystem::path accountPath = std::filesystem::current_path().parent_path().parent_path().parent_path() / "objects/accounts";
-const std::string accountFileSuffix = "_account.json";
+using namespace std::chrono_literals;
+namespace Common
+{
+    constexpr const char* accountHandlerIpcPath = "unix:///home/vinicius/accountHandlerIpc.sock";
+
+
+    const auto expirationTime = 2min;
+}

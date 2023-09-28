@@ -8,15 +8,16 @@
 
 #include "AccountServiceIPC/AccountServiceIPC.grpc.pb.h"
 #include "CommonCxx/Consts.h"
+#include "CommonCxx/StatusCode.h"
 
 class AccountServiceClient
 {
 public:
     AccountServiceClient();
 
-    void CreateAccount(std::string username, std::string password);
-    void DeleteAccount(std::string username);
-    void AuthenticateAccount(std::string username, std::string password);
+    Common::AccountHandlerStatusCode CreateAccount(std::string username, std::string password);
+    Common::AccountHandlerStatusCode DeleteAccount(std::string username);
+    Common::AccountAuthenticationStatusCode AuthenticateAccount(std::string username, std::string password);
 
 private:
     std::unique_ptr<AccountServiceIPC::AccountServiceIPC::Stub> m_accountServiceClientStub;

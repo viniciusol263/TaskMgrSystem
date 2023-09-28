@@ -47,7 +47,9 @@ struct CreateAccountRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateAccountRequestDefaultTypeInternal _CreateAccountRequest_default_instance_;
 PROTOBUF_CONSTEXPR CreateAccountResponse::CreateAccountResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.status_code_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CreateAccountResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CreateAccountResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -71,7 +73,9 @@ struct DeleteAccountRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteAccountRequestDefaultTypeInternal _DeleteAccountRequest_default_instance_;
 PROTOBUF_CONSTEXPR DeleteAccountResponse::DeleteAccountResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.status_code_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DeleteAccountResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeleteAccountResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -96,7 +100,9 @@ struct AuthenticateAccountRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthenticateAccountRequestDefaultTypeInternal _AuthenticateAccountRequest_default_instance_;
 PROTOBUF_CONSTEXPR AuthenticateAccountResponse::AuthenticateAccountResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.status_code_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct AuthenticateAccountResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthenticateAccountResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -132,6 +138,7 @@ const uint32_t TableStruct_AccountServiceIPC_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::AccountServiceIPC::CreateAccountResponse, _impl_.status_code_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::AccountServiceIPC::DeleteAccountRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -145,6 +152,7 @@ const uint32_t TableStruct_AccountServiceIPC_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::AccountServiceIPC::DeleteAccountResponse, _impl_.status_code_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::AccountServiceIPC::AuthenticateAccountRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -159,15 +167,16 @@ const uint32_t TableStruct_AccountServiceIPC_2eproto::offsets[] PROTOBUF_SECTION
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::AccountServiceIPC::AuthenticateAccountResponse, _impl_.status_code_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::AccountServiceIPC::Empty)},
   { 6, -1, -1, sizeof(::AccountServiceIPC::CreateAccountRequest)},
   { 14, -1, -1, sizeof(::AccountServiceIPC::CreateAccountResponse)},
-  { 20, -1, -1, sizeof(::AccountServiceIPC::DeleteAccountRequest)},
-  { 27, -1, -1, sizeof(::AccountServiceIPC::DeleteAccountResponse)},
-  { 33, -1, -1, sizeof(::AccountServiceIPC::AuthenticateAccountRequest)},
-  { 41, -1, -1, sizeof(::AccountServiceIPC::AuthenticateAccountResponse)},
+  { 21, -1, -1, sizeof(::AccountServiceIPC::DeleteAccountRequest)},
+  { 28, -1, -1, sizeof(::AccountServiceIPC::DeleteAccountResponse)},
+  { 35, -1, -1, sizeof(::AccountServiceIPC::AuthenticateAccountRequest)},
+  { 43, -1, -1, sizeof(::AccountServiceIPC::AuthenticateAccountResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -182,29 +191,38 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_AccountServiceIPC_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\027AccountServiceIPC.proto\022\021AccountServic"
-  "eIPC\"\007\n\005Empty\":\n\024CreateAccountRequest\022\020\n"
-  "\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"\027\n\025Cre"
-  "ateAccountResponse\"(\n\024DeleteAccountReque"
-  "st\022\020\n\010username\030\001 \001(\t\"\027\n\025DeleteAccountRes"
-  "ponse\"@\n\032AuthenticateAccountRequest\022\020\n\010u"
-  "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"\035\n\033Authe"
-  "nticateAccountResponse2\225\003\n\021AccountServic"
-  "eIPC\022<\n\004Ping\022\030.AccountServiceIPC.Empty\032\030"
-  ".AccountServiceIPC.Empty\"\000\022d\n\rCreateAcco"
-  "unt\022\'.AccountServiceIPC.CreateAccountReq"
-  "uest\032(.AccountServiceIPC.CreateAccountRe"
-  "sponse\"\000\022d\n\rDeleteAccount\022\'.AccountServi"
-  "ceIPC.DeleteAccountRequest\032(.AccountServ"
-  "iceIPC.DeleteAccountResponse\"\000\022v\n\023Authen"
-  "ticateAccount\022-.AccountServiceIPC.Authen"
-  "ticateAccountRequest\032..AccountServiceIPC"
-  ".AuthenticateAccountResponse\"\000b\006proto3"
+  "eIPC\032\024AccountStructs.proto\"\007\n\005Empty\":\n\024C"
+  "reateAccountRequest\022\020\n\010username\030\001 \001(\t\022\020\n"
+  "\010password\030\002 \001(\t\"Y\n\025CreateAccountResponse"
+  "\022@\n\013status_code\030\001 \001(\0162+.AccountServiceIP"
+  "C.AccountHandlerStatusCode\"(\n\024DeleteAcco"
+  "untRequest\022\020\n\010username\030\001 \001(\t\"Y\n\025DeleteAc"
+  "countResponse\022@\n\013status_code\030\001 \001(\0162+.Acc"
+  "ountServiceIPC.AccountHandlerStatusCode\""
+  "@\n\032AuthenticateAccountRequest\022\020\n\010usernam"
+  "e\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"f\n\033Authenticat"
+  "eAccountResponse\022G\n\013status_code\030\001 \001(\01622."
+  "AccountServiceIPC.AccountAuthenticationS"
+  "tatusCode2\225\003\n\021AccountServiceIPC\022<\n\004Ping\022"
+  "\030.AccountServiceIPC.Empty\032\030.AccountServi"
+  "ceIPC.Empty\"\000\022d\n\rCreateAccount\022\'.Account"
+  "ServiceIPC.CreateAccountRequest\032(.Accoun"
+  "tServiceIPC.CreateAccountResponse\"\000\022d\n\rD"
+  "eleteAccount\022\'.AccountServiceIPC.DeleteA"
+  "ccountRequest\032(.AccountServiceIPC.Delete"
+  "AccountResponse\"\000\022v\n\023AuthenticateAccount"
+  "\022-.AccountServiceIPC.AuthenticateAccount"
+  "Request\032..AccountServiceIPC.Authenticate"
+  "AccountResponse\"\000b\006proto3"
   ;
+static const ::_pbi::DescriptorTable* const descriptor_table_AccountServiceIPC_2eproto_deps[1] = {
+  &::descriptor_table_AccountStructs_2eproto,
+};
 static ::_pbi::once_flag descriptor_table_AccountServiceIPC_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_AccountServiceIPC_2eproto = {
-    false, false, 718, descriptor_table_protodef_AccountServiceIPC_2eproto,
+    false, false, 945, descriptor_table_protodef_AccountServiceIPC_2eproto,
     "AccountServiceIPC.proto",
-    &descriptor_table_AccountServiceIPC_2eproto_once, nullptr, 0, 7,
+    &descriptor_table_AccountServiceIPC_2eproto_once, descriptor_table_AccountServiceIPC_2eproto_deps, 1, 7,
     schemas, file_default_instances, TableStruct_AccountServiceIPC_2eproto::offsets,
     file_level_metadata_AccountServiceIPC_2eproto, file_level_enum_descriptors_AccountServiceIPC_2eproto,
     file_level_service_descriptors_AccountServiceIPC_2eproto,
@@ -518,31 +536,172 @@ class CreateAccountResponse::_Internal {
 
 CreateAccountResponse::CreateAccountResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:AccountServiceIPC.CreateAccountResponse)
 }
 CreateAccountResponse::CreateAccountResponse(const CreateAccountResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   CreateAccountResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.status_code_ = from._impl_.status_code_;
   // @@protoc_insertion_point(copy_constructor:AccountServiceIPC.CreateAccountResponse)
 }
 
+inline void CreateAccountResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
 
+CreateAccountResponse::~CreateAccountResponse() {
+  // @@protoc_insertion_point(destructor:AccountServiceIPC.CreateAccountResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void CreateAccountResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
 
+void CreateAccountResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void CreateAccountResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:AccountServiceIPC.CreateAccountResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.status_code_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CreateAccountResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status_code(static_cast<::AccountServiceIPC::AccountHandlerStatusCode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CreateAccountResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:AccountServiceIPC.CreateAccountResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_status_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:AccountServiceIPC.CreateAccountResponse)
+  return target;
+}
+
+size_t CreateAccountResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:AccountServiceIPC.CreateAccountResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CreateAccountResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    CreateAccountResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateAccountResponse::GetClassData() const { return &_class_data_; }
 
 
+void CreateAccountResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CreateAccountResponse*>(&to_msg);
+  auto& from = static_cast<const CreateAccountResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:AccountServiceIPC.CreateAccountResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  if (from._internal_status_code() != 0) {
+    _this->_internal_set_status_code(from._internal_status_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void CreateAccountResponse::CopyFrom(const CreateAccountResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:AccountServiceIPC.CreateAccountResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool CreateAccountResponse::IsInitialized() const {
+  return true;
+}
 
+void CreateAccountResponse::InternalSwap(CreateAccountResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.status_code_, other->_impl_.status_code_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateAccountResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
@@ -761,31 +920,172 @@ class DeleteAccountResponse::_Internal {
 
 DeleteAccountResponse::DeleteAccountResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:AccountServiceIPC.DeleteAccountResponse)
 }
 DeleteAccountResponse::DeleteAccountResponse(const DeleteAccountResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   DeleteAccountResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.status_code_ = from._impl_.status_code_;
   // @@protoc_insertion_point(copy_constructor:AccountServiceIPC.DeleteAccountResponse)
 }
 
+inline void DeleteAccountResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
 
+DeleteAccountResponse::~DeleteAccountResponse() {
+  // @@protoc_insertion_point(destructor:AccountServiceIPC.DeleteAccountResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void DeleteAccountResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
 
+void DeleteAccountResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void DeleteAccountResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:AccountServiceIPC.DeleteAccountResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.status_code_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DeleteAccountResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status_code(static_cast<::AccountServiceIPC::AccountHandlerStatusCode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DeleteAccountResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:AccountServiceIPC.DeleteAccountResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_status_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:AccountServiceIPC.DeleteAccountResponse)
+  return target;
+}
+
+size_t DeleteAccountResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:AccountServiceIPC.DeleteAccountResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteAccountResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    DeleteAccountResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteAccountResponse::GetClassData() const { return &_class_data_; }
 
 
+void DeleteAccountResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DeleteAccountResponse*>(&to_msg);
+  auto& from = static_cast<const DeleteAccountResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:AccountServiceIPC.DeleteAccountResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  if (from._internal_status_code() != 0) {
+    _this->_internal_set_status_code(from._internal_status_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void DeleteAccountResponse::CopyFrom(const DeleteAccountResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:AccountServiceIPC.DeleteAccountResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool DeleteAccountResponse::IsInitialized() const {
+  return true;
+}
 
+void DeleteAccountResponse::InternalSwap(DeleteAccountResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.status_code_, other->_impl_.status_code_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteAccountResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
@@ -1054,31 +1354,172 @@ class AuthenticateAccountResponse::_Internal {
 
 AuthenticateAccountResponse::AuthenticateAccountResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:AccountServiceIPC.AuthenticateAccountResponse)
 }
 AuthenticateAccountResponse::AuthenticateAccountResponse(const AuthenticateAccountResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   AuthenticateAccountResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.status_code_ = from._impl_.status_code_;
   // @@protoc_insertion_point(copy_constructor:AccountServiceIPC.AuthenticateAccountResponse)
 }
 
+inline void AuthenticateAccountResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.status_code_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
 
+AuthenticateAccountResponse::~AuthenticateAccountResponse() {
+  // @@protoc_insertion_point(destructor:AccountServiceIPC.AuthenticateAccountResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void AuthenticateAccountResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
 
+void AuthenticateAccountResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AuthenticateAccountResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:AccountServiceIPC.AuthenticateAccountResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.status_code_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AuthenticateAccountResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .AccountServiceIPC.AccountAuthenticationStatusCode status_code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status_code(static_cast<::AccountServiceIPC::AccountAuthenticationStatusCode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AuthenticateAccountResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:AccountServiceIPC.AuthenticateAccountResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountAuthenticationStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_status_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:AccountServiceIPC.AuthenticateAccountResponse)
+  return target;
+}
+
+size_t AuthenticateAccountResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:AccountServiceIPC.AuthenticateAccountResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .AccountServiceIPC.AccountAuthenticationStatusCode status_code = 1;
+  if (this->_internal_status_code() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthenticateAccountResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AuthenticateAccountResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthenticateAccountResponse::GetClassData() const { return &_class_data_; }
 
 
+void AuthenticateAccountResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AuthenticateAccountResponse*>(&to_msg);
+  auto& from = static_cast<const AuthenticateAccountResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:AccountServiceIPC.AuthenticateAccountResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  if (from._internal_status_code() != 0) {
+    _this->_internal_set_status_code(from._internal_status_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void AuthenticateAccountResponse::CopyFrom(const AuthenticateAccountResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:AccountServiceIPC.AuthenticateAccountResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool AuthenticateAccountResponse::IsInitialized() const {
+  return true;
+}
 
+void AuthenticateAccountResponse::InternalSwap(AuthenticateAccountResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.status_code_, other->_impl_.status_code_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthenticateAccountResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(

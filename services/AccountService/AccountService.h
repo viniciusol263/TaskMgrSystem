@@ -17,8 +17,8 @@ public:
     AccountService();
     
 private:
+    AccountAuthenticationPtr m_accountAuthentication;
     AccountHandlerPtr m_accountHandler;
     AccountMonitorPtr m_accountMonitor;
-    AccountAuthenticationPtr m_accountAuthentication;
 };
 using AccountServicePtr = std::shared_ptr<AccountService>;

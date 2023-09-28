@@ -31,6 +31,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "AccountStructs.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_AccountServiceIPC_2eproto
@@ -369,9 +370,10 @@ class CreateAccountRequest final :
 // -------------------------------------------------------------------
 
 class CreateAccountResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:AccountServiceIPC.CreateAccountResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AccountServiceIPC.CreateAccountResponse) */ {
  public:
   inline CreateAccountResponse() : CreateAccountResponse(nullptr) {}
+  ~CreateAccountResponse() override;
   explicit PROTOBUF_CONSTEXPR CreateAccountResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   CreateAccountResponse(const CreateAccountResponse& from);
@@ -444,15 +446,29 @@ class CreateAccountResponse final :
   CreateAccountResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<CreateAccountResponse>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const CreateAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateAccountResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CreateAccountResponse& from) {
+    CreateAccountResponse::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const CreateAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateAccountResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -473,6 +489,18 @@ class CreateAccountResponse final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kStatusCodeFieldNumber = 1,
+  };
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  void clear_status_code();
+  ::AccountServiceIPC::AccountHandlerStatusCode status_code() const;
+  void set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value);
+  private:
+  ::AccountServiceIPC::AccountHandlerStatusCode _internal_status_code() const;
+  void _internal_set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value);
+  public:
+
   // @@protoc_insertion_point(class_scope:AccountServiceIPC.CreateAccountResponse)
  private:
   class _Internal;
@@ -481,7 +509,10 @@ class CreateAccountResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    int status_code_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_AccountServiceIPC_2eproto;
 };
 // -------------------------------------------------------------------
@@ -640,9 +671,10 @@ class DeleteAccountRequest final :
 // -------------------------------------------------------------------
 
 class DeleteAccountResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:AccountServiceIPC.DeleteAccountResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AccountServiceIPC.DeleteAccountResponse) */ {
  public:
   inline DeleteAccountResponse() : DeleteAccountResponse(nullptr) {}
+  ~DeleteAccountResponse() override;
   explicit PROTOBUF_CONSTEXPR DeleteAccountResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   DeleteAccountResponse(const DeleteAccountResponse& from);
@@ -715,15 +747,29 @@ class DeleteAccountResponse final :
   DeleteAccountResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<DeleteAccountResponse>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const DeleteAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteAccountResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const DeleteAccountResponse& from) {
+    DeleteAccountResponse::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const DeleteAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteAccountResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -744,6 +790,18 @@ class DeleteAccountResponse final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kStatusCodeFieldNumber = 1,
+  };
+  // .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+  void clear_status_code();
+  ::AccountServiceIPC::AccountHandlerStatusCode status_code() const;
+  void set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value);
+  private:
+  ::AccountServiceIPC::AccountHandlerStatusCode _internal_status_code() const;
+  void _internal_set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value);
+  public:
+
   // @@protoc_insertion_point(class_scope:AccountServiceIPC.DeleteAccountResponse)
  private:
   class _Internal;
@@ -752,7 +810,10 @@ class DeleteAccountResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    int status_code_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_AccountServiceIPC_2eproto;
 };
 // -------------------------------------------------------------------
@@ -927,9 +988,10 @@ class AuthenticateAccountRequest final :
 // -------------------------------------------------------------------
 
 class AuthenticateAccountResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:AccountServiceIPC.AuthenticateAccountResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AccountServiceIPC.AuthenticateAccountResponse) */ {
  public:
   inline AuthenticateAccountResponse() : AuthenticateAccountResponse(nullptr) {}
+  ~AuthenticateAccountResponse() override;
   explicit PROTOBUF_CONSTEXPR AuthenticateAccountResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   AuthenticateAccountResponse(const AuthenticateAccountResponse& from);
@@ -1002,15 +1064,29 @@ class AuthenticateAccountResponse final :
   AuthenticateAccountResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<AuthenticateAccountResponse>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const AuthenticateAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AuthenticateAccountResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AuthenticateAccountResponse& from) {
+    AuthenticateAccountResponse::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const AuthenticateAccountResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthenticateAccountResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -1031,6 +1107,18 @@ class AuthenticateAccountResponse final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kStatusCodeFieldNumber = 1,
+  };
+  // .AccountServiceIPC.AccountAuthenticationStatusCode status_code = 1;
+  void clear_status_code();
+  ::AccountServiceIPC::AccountAuthenticationStatusCode status_code() const;
+  void set_status_code(::AccountServiceIPC::AccountAuthenticationStatusCode value);
+  private:
+  ::AccountServiceIPC::AccountAuthenticationStatusCode _internal_status_code() const;
+  void _internal_set_status_code(::AccountServiceIPC::AccountAuthenticationStatusCode value);
+  public:
+
   // @@protoc_insertion_point(class_scope:AccountServiceIPC.AuthenticateAccountResponse)
  private:
   class _Internal;
@@ -1039,7 +1127,10 @@ class AuthenticateAccountResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    int status_code_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_AccountServiceIPC_2eproto;
 };
 // ===================================================================
@@ -1161,6 +1252,26 @@ inline void CreateAccountRequest::set_allocated_password(std::string* password) 
 
 // CreateAccountResponse
 
+// .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+inline void CreateAccountResponse::clear_status_code() {
+  _impl_.status_code_ = 0;
+}
+inline ::AccountServiceIPC::AccountHandlerStatusCode CreateAccountResponse::_internal_status_code() const {
+  return static_cast< ::AccountServiceIPC::AccountHandlerStatusCode >(_impl_.status_code_);
+}
+inline ::AccountServiceIPC::AccountHandlerStatusCode CreateAccountResponse::status_code() const {
+  // @@protoc_insertion_point(field_get:AccountServiceIPC.CreateAccountResponse.status_code)
+  return _internal_status_code();
+}
+inline void CreateAccountResponse::_internal_set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value) {
+  
+  _impl_.status_code_ = value;
+}
+inline void CreateAccountResponse::set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value) {
+  _internal_set_status_code(value);
+  // @@protoc_insertion_point(field_set:AccountServiceIPC.CreateAccountResponse.status_code)
+}
+
 // -------------------------------------------------------------------
 
 // DeleteAccountRequest
@@ -1218,6 +1329,26 @@ inline void DeleteAccountRequest::set_allocated_username(std::string* username) 
 // -------------------------------------------------------------------
 
 // DeleteAccountResponse
+
+// .AccountServiceIPC.AccountHandlerStatusCode status_code = 1;
+inline void DeleteAccountResponse::clear_status_code() {
+  _impl_.status_code_ = 0;
+}
+inline ::AccountServiceIPC::AccountHandlerStatusCode DeleteAccountResponse::_internal_status_code() const {
+  return static_cast< ::AccountServiceIPC::AccountHandlerStatusCode >(_impl_.status_code_);
+}
+inline ::AccountServiceIPC::AccountHandlerStatusCode DeleteAccountResponse::status_code() const {
+  // @@protoc_insertion_point(field_get:AccountServiceIPC.DeleteAccountResponse.status_code)
+  return _internal_status_code();
+}
+inline void DeleteAccountResponse::_internal_set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value) {
+  
+  _impl_.status_code_ = value;
+}
+inline void DeleteAccountResponse::set_status_code(::AccountServiceIPC::AccountHandlerStatusCode value) {
+  _internal_set_status_code(value);
+  // @@protoc_insertion_point(field_set:AccountServiceIPC.DeleteAccountResponse.status_code)
+}
 
 // -------------------------------------------------------------------
 
@@ -1326,6 +1457,26 @@ inline void AuthenticateAccountRequest::set_allocated_password(std::string* pass
 // -------------------------------------------------------------------
 
 // AuthenticateAccountResponse
+
+// .AccountServiceIPC.AccountAuthenticationStatusCode status_code = 1;
+inline void AuthenticateAccountResponse::clear_status_code() {
+  _impl_.status_code_ = 0;
+}
+inline ::AccountServiceIPC::AccountAuthenticationStatusCode AuthenticateAccountResponse::_internal_status_code() const {
+  return static_cast< ::AccountServiceIPC::AccountAuthenticationStatusCode >(_impl_.status_code_);
+}
+inline ::AccountServiceIPC::AccountAuthenticationStatusCode AuthenticateAccountResponse::status_code() const {
+  // @@protoc_insertion_point(field_get:AccountServiceIPC.AuthenticateAccountResponse.status_code)
+  return _internal_status_code();
+}
+inline void AuthenticateAccountResponse::_internal_set_status_code(::AccountServiceIPC::AccountAuthenticationStatusCode value) {
+  
+  _impl_.status_code_ = value;
+}
+inline void AuthenticateAccountResponse::set_status_code(::AccountServiceIPC::AccountAuthenticationStatusCode value) {
+  _internal_set_status_code(value);
+  // @@protoc_insertion_point(field_set:AccountServiceIPC.AuthenticateAccountResponse.status_code)
+}
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

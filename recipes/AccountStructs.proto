@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package AccountServiceIPC;
+
+enum AccountHandlerStatusCode
+{
+    AccountSuccessfullyCreated = 0;
+    AccountSuccessfullyDeleted = 1;
+    AccountAlreadyExists = 2;
+    AccountCouldntBeFound = 3;
+    FailedToCreateAccount = 4;
+    FailedToDeleteAccount = 5;
+    NotAuthenticatedAccount = 6;
+}; 
+
+enum AccountAuthenticationStatusCode
+{
+    AuthenticatedAccount = 0;
+    ErrorAuthenticationAccount = 1;
+};

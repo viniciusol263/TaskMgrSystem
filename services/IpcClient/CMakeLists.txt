@@ -4,11 +4,16 @@ project(IpcClient)
 set(IPCCLIENT_SRC IpcClient.cpp)
 
 add_executable(IpcClient main.cpp ${IPCCLIENT_SRC}
-                                
+                                  ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountStructs.pb.cc
+                                  ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountStructs.grpc.pb.cc
                                   ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.pb.cc
                                   ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.grpc.pb.cc
 
                                   ${TASKMGRSYSTEMSOURCEPATH}/libs/IPCClients/AccountServiceClient/AccountServiceClient.cpp
+                                  
+                                  ${TASKMGRSYSTEMSOURCEPATH}/libs/Utils/ErrorHandling/ErrorHandling.cpp
+
+                                  ${TASKMGRSYSTEMSOURCEPATH}/libs/CommonCxx/StatusCode.cpp
 )
 
 target_include_directories(IpcClient PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package AccountServiceIPC;
 
+import "AccountStructs.proto";
+
 service AccountServiceIPC {
     rpc Ping(Empty) returns(Empty) {}
     rpc CreateAccount(CreateAccountRequest) returns(CreateAccountResponse) {}
@@ -16,18 +18,24 @@ message CreateAccountRequest {
     string password = 2;
 }
 
-message CreateAccountResponse {}
+message CreateAccountResponse {
+    AccountHandlerStatusCode status_code = 1;
+}
 
 message DeleteAccountRequest {
     string username = 1;
 }
 
-message DeleteAccountResponse {}
+message DeleteAccountResponse {
+    AccountHandlerStatusCode status_code = 1;
+}
 
 message AuthenticateAccountRequest {
     string username = 1;
     string password = 2;
 }
 
-message AuthenticateAccountResponse {}
+message AuthenticateAccountResponse {
+    AccountAuthenticationStatusCode status_code = 1;
+}
 

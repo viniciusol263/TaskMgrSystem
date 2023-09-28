@@ -11,8 +11,11 @@ set(ACCOUNTSERVICE_SRC AccountService.cpp
                        
                        ${TASKMGRSYSTEMSOURCEPATH}/libs/CommonCxx/StatusCode.cpp
                        
+                       ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountStructs.pb.cc
+                       ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountStructs.grpc.pb.cc
                        ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.pb.cc
-                       ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.grpc.pb.cc)
+                       ${TASKMGRSYSTEMSOURCEPATH}/recipes/AccountServiceIPC/AccountServiceIPC.grpc.pb.cc
+)
 
 add_executable(AccountService main.cpp ${ACCOUNTSERVICE_SRC})
 target_include_directories(AccountService PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}

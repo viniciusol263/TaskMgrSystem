@@ -1,6 +1,7 @@
 #include <fstream>
 #include <filesystem>
 #include <iostream>
+#include <optional>
 
 #define UUID_SYSTEM_GENERATOR
 #include "uuid.h"
@@ -13,9 +14,15 @@
 #include "CommonCxx/FileSystemRAII.h"
 
 
-AccountHandler::AccountHandler(const Common::AccountStorage& storage) :
-    m_storage(storage)
+AccountHandler::AccountHandler(const Common::AccountStorage& storage, AccountAuthenticationPtr accountAuth) :
+    m_storage(storage),
+    m_accountAuth(std::move(accountAuth))
 {}
+
+AccountAuthenticationPtr AccountHandler::GetAccountAuth()
+{
+    return m_accountAuth;
+}
 
 Common::AccountHandlerStatusCode AccountHandler::CreateAccount(std::string username, std::string password)
 {
@@ -49,11 +56,12 @@ Common::AccountHandlerStatusCode AccountHandler::DeleteAccount(std::string usern
 {
     try
     {
+        if(m_accountAuth->GetSession() == nullptr || (m_accountAuth->GetSession() != nullptr && m_accountAuth->GetSession()->Expired())) return Common::AccountHandlerStatusCode::NotAuthenticatedAccount;
         auto returnedId = m_storage.get_all<Common::Account>(sqlite_orm::where(sqlite_orm::c(&Common::Account::username) = username));
         if(returnedId.size() > 0)
         {
             m_storage.remove<Common::Account>(returnedId[0].id);
-            return Common::AccountHandlerStatusCode::AccountAlreadyExists;
+            return Common::AccountHandlerStatusCode::AccountSuccessfullyDeleted;
         }
     }
     catch(const std::filesystem::filesystem_error& e)
